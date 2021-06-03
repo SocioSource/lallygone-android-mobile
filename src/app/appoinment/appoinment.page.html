@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>appoinment</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form #form="ngForm" method="post" class="form_item">
+    <ion-item class="lb-img"> 
+      <ion-datetime displayFormat="D MMM YYYY" value="" name="appt_date" [(ngModel)]="forms.appt_date" placeholder="Choose Appointment Date"></ion-datetime>
+      <!-- <ion-input type="text" name="appt_date" placeholder="Appointment Date"></ion-input> -->
+    </ion-item>
+
+    <ion-item class="lb-img">
+      <ion-datetime displayFormat="hh:mm A" name="appt_time" [(ngModel)]="forms.appt_time" value="" placeholder="Choose Appointment Time"></ion-datetime>
+      <!-- <ion-input type="text" name="appt_time" placeholder="Appointment Time"></ion-input> -->
+    </ion-item>
+  
+    <ion-item class="lb-img">
+      <ion-label position="floating">Sales Tech</ion-label>
+      <ion-input type="text" name="sales_tech" [(ngModel)]="forms.sales_tech" placeholder="Sales Tech" readonly="readonly"></ion-input>
+    </ion-item>
+
+    <ion-item class="lb-img">
+      <ion-label position="floating">Referal Source</ion-label>
+      <ion-input type="text" name="referral_source" [(ngModel)]="forms.referral_source" placeholder="Referal Source"></ion-input>
+    </ion-item>
+
+    <ion-item class="lb-img">
+      <ion-label position="floating">Quote valid for days</ion-label>
+      <ion-input type="number" name="quote_valid_for" [(ngModel)]="forms.quote_valid_for" placeholder="Quote valid for days"></ion-input>
+    </ion-item>
+    
+    <ion-item class="lb-img"> 
+      <ion-datetime displayFormat="D MMM YYYY" name="install_date" [(ngModel)]="forms.install_date" value="" placeholder="Choose Install Date"></ion-datetime>
+    </ion-item>
+
+    <ion-list >
+      <ion-radio-group name="terms" [(ngModel)]="forms.terms" (ionChange)="terms($event.target.value)">
+        <ion-list-header>
+          Terms
+        </ion-list-header>
+      <ion-item>
+        <ion-label>50 Dep</ion-label>
+        <ion-radio value="50 Dep"></ion-radio>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label>50 Comp</ion-label>
+        <ion-radio value="50 Comp" ></ion-radio>
+      </ion-item>
+      </ion-radio-group>
+    </ion-list>
+
+    <ion-item lines="none"> 
+      <!-- class="lb-img" -->
+      
+
+      <ion-fab vertical="bottom" color="secondary" horizontal="end"  (click)="cameraPic()">
+        <ion-fab-button>
+          <ion-icon name="camera"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+
+      
+      <ion-label *ngIf="forms.pictures == ''" class="ion-padding">Capture meeting</ion-label>
+        <ion-thumbnail slot="start"  *ngIf="forms.pictures != ''"> 
+          <ion-icon [ngClass]="(forms.pictures) ? 'closeCircle' : 'display_none'" class="closeCircle" name="close-circle" (click)="close()"></ion-icon>
+          <ion-img [src]="forms.pictures"></ion-img> 
+        </ion-thumbnail> 
+    </ion-item>  
+
+  </form>
+
+</ion-content>
+
+<ion-footer>
+  <ion-button class="footer_btn" type="submit" expand="full" color="secondary" (click)=" update ? create(form) : updateForm(form)">Continue</ion-button>
+  <!-- <ion-button class="footer_btn" type="submit" expand="full" color="secondary" [disabled]="update" (click)="skip(form)">Skip</ion-button> -->
+</ion-footer>

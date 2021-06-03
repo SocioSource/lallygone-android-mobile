@@ -1,0 +1,26 @@
+.vertical-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .vertical-center form{
+    width: 100%;
+    margin: auto;
+    float: left;
+  }
+
+  .login-logo ion-label{
+      text-align: center;
+  }
+
+  ion-footer{
+    .footer_btn{
+      // width: 50%;
+      // float: left;
+      margin: auto;
+      height: 35pt;
+    }
+  }

@@ -1,0 +1,103 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Pillars</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list [ngClass]="!showList ? 'hideShow' : ''" *ngFor="let piller of pillers;let i = index;">
+    <ion-item >
+      <ion-label (click)="editForm(piller)">{{piller.opportunity_id}} Pillar {{i+1}}</ion-label>
+      <ion-icon name="close" class="closeIcon" (click)="removePiller(i)"></ion-icon>
+    </ion-item>
+  </ion-list>
+
+  <form #form="ngForm" method="post" class="form_item" [ngClass]="showList ? 'hideShow' : ''" >
+    <ion-list>
+      <ion-radio-group name="col_wall" [(ngModel)]="forms.col_wall" (ionChange)="selectColWall($event.target.value)">
+      <ion-item>
+        <ion-label>Col</ion-label>
+        <ion-radio value="col"></ion-radio>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label>Wall</ion-label>
+        <ion-radio value="wall"></ion-radio>
+      </ion-item>
+      </ion-radio-group>
+    </ion-list>
+
+    <ion-item class="lb-img"> 
+      <ion-label position="floating">Location</ion-label>
+      <ion-input ngModel type="text" name="col_wall_location" [(ngModel)]="forms.col_wall_location" placeholder="Location"></ion-input>
+    </ion-item>
+
+    <ion-item class="lb-img">
+      <ion-label position="floating">Height FF</ion-label>
+      <ion-input ngModel type="number" name="height_from_FF" [(ngModel)]="forms.height_from_FF" placeholder="Height FF"></ion-input>
+    </ion-item>
+  
+    <ion-item class="lb-img">
+      <ion-label position="floating">Beam Length</ion-label>
+      <ion-input ngModel type="number" name="beam_length" [(ngModel)]="forms.beam_length" placeholder="Beam length"></ion-input>
+    </ion-item>
+
+    <ion-item class="lb-img">
+      <ion-label position="floating">Beam Width</ion-label>
+      <ion-input ngModel type="number" name="beam_width" [(ngModel)]="forms.beam_width" placeholder="Beam width"></ion-input>
+    </ion-item>
+
+    <ion-item class="lb-img">
+      <ion-label position="floating">Beam Depth</ion-label>
+      <ion-input ngModel type="number" name="beam_depth" [(ngModel)]="forms.beam_depth" placeholder="Beam depth"></ion-input>
+    </ion-item>
+    
+    <ion-item class="lb-img"> 
+      <ion-label position="floating">To Remove</ion-label>
+      <ion-input ngModel type="text" name="col_if_wall_to_remove" [(ngModel)]="forms.col_if_wall_to_remove" placeholder="{{forms.col_wall}} to remove" disabled="true"></ion-input>
+    </ion-item>
+
+    <ion-list>
+      <ion-radio-group name="drop_flush"  [(ngModel)]="forms.drop_flush" (ionChange)="selectDropFlush($event.target.value)">
+      <ion-item>
+        <ion-label>Drop</ion-label>
+        <ion-radio value="drop"></ion-radio>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label>Flush</ion-label>
+        <ion-radio value="flush"></ion-radio>
+      </ion-item>
+      </ion-radio-group>
+    </ion-list>
+
+    <ion-item class="lb-img">
+      <ion-label position="floating">Unit Price</ion-label>
+      <ion-input ngModel type="number" name="unit_price" [(ngModel)]="forms.unit_price" placeholder="Unit price"></ion-input>
+    </ion-item> 
+    
+    <ion-item class="lb-img">
+      <ion-label position="floating">Total</ion-label>
+      <ion-input ngModel type="number" name="total" [(ngModel)]="forms.total" placeholder="Total"></ion-input>
+    </ion-item> 
+
+  </form>
+  
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="add()" [ngClass]="!showList ? 'hideShow' : ''">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
+
+<ion-footer>
+  <ion-button  *ngIf="!showList" class="footer_btn" type="submit" expand="full" color="secondary" (click)="!update ? create(form) : updateForm(form)">Continue</ion-button>
+  <ion-button  *ngIf="showList" [disabled] ="pillers.length == 0" class="footer_btn" type="submit" expand="full" color="secondary"  (click)="skip(form)">Continue</ion-button>
+</ion-footer>
+

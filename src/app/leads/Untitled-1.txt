@@ -1,0 +1,19 @@
+"FIRST_NAME":"",
+"LAST_NAME":"",
+"EMAIL":"",
+"PHONE":"",
+"ADDRESS_STREET":"",
+"CREATED_USER_ID":"",
+"OWNER_USER_ID":"",
+"RESPONSIBLE_USER_ID":"",
+
+
+{
+    "OWNER_USER_ID":"835604",
+    "CREATED_USER_ID":"835604",
+    "RESPONSIBLE_USER_ID":"835604",
+    "method":"POST",
+    "url":"https://api.insightly.com/v3.1/Leads",
+    "data":false,
+    "key":"Basic YmY0NGViN2QtMWFmYy00NjA4LTg4MDQtMGVhNWY4YTc4NTVh"
+}

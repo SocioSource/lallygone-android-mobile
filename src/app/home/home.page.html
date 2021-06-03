@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar> 
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+    <ion-title class="ion-text-center ion-no-margin">Opportunity</ion-title>
+
+    <ion-item slot="end" color="primary" lines="none">
+      <ion-icon name="funnel"></ion-icon> 
+      <label style="display: none;"></label>
+      <ion-select [(ngModel)]="stageId" (ionChange)="getLead()" interface="popover" class="pipe_lines">
+        <ion-select-option value="All">All</ion-select-option>
+        <ion-select-option *ngFor="let stage of service.pipelineStages" [value]="stage.STAGE_ID">{{stage.STAGE_NAME}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="home-cont">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <!-- <div>
+    <app-footer></app-footer>
+  </div> -->
+  
+  <ion-list>
+     <ion-item lines="none" *ngIf="!show">
+      <ion-col class="ion-text-center">No more open data</ion-col>
+      </ion-item>
+    <ion-item  *ngFor="let opp of opportunityLists;let i = index;" (click)="selectOpportunity(opp)"> 
+    <!-- <div *ngIf="show"> -->
+      <ion-col>{{i+1 +". "+opp.OPPORTUNITY_NAME}} </ion-col>
+      <ion-col><span style="float:right; color:Red">{{opp.OPPORTUNITY_STATE}}</span> </ion-col>
+    <!-- </div> -->
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+
+<ion-footer>
+  <!-- <ion-button class="footer_btn" type="submit" expand="full" color="primary" (click)="lead()">Lead</ion-button>       
+  <ion-button class="footer_btn btn_opacity" type="submit" expand="full" color="primary">Opportunity</ion-button>  -->
+  <ion-toolbar>
+    <app-footer></app-footer>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" *ngIf="title == 'Change Password'">
+      <ion-icon name="arrow-back-outline" class="back_btn" (click)="backBtn()"></ion-icon>
+    </ion-buttons>
+    <ion-title class="ion-text-center ion-no-margin">{{title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+  <ion-list *ngIf="title == 'Profile'" class="ion-no-padding">
+    <ion-row class="ion-align-items-center">
+      <ion-col size="12" (click)="change($event)">
+        <ion-item lines="none">
+          <ion-label>Change Password</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12">
+        <ion-item  lines="none">
+          <ion-label (click)="logoutConfirm()">Logout</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+
+  <ion-list *ngIf="title == 'Change Password'"> 
+  <form #form="ngForm" (ngSubmit)="changePassword(form)" method="post">
+    <ion-item>
+      <ion-label position="floating">New Password</ion-label>
+      <ion-input ngModel [type]="type" name="n_password"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="floating">Confirm Password</ion-label>
+      <ion-input ngModel [type]="type" name="c_password"></ion-input>
+    </ion-item>
+
+    <p class="ion-padding-end ion-text-right" color="danger" (click)="type == 'text' ? hide() :show()">{{type == 'text' ? 'Hide' : 'Show'}}</p>
+    
+    <ion-button class="footer_btn margin-unset" type="submit" expand="full" color="secondary" [disabled]='!form.value.n_password || !form.value.c_password'>Change</ion-button>
+  </form>
+  </ion-list>
+
+  
+
+  
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <app-footer></app-footer>
+  </ion-toolbar>
+</ion-footer>

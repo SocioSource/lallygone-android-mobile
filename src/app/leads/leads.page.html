@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar> 
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center ion-no-margin">Leads</ion-title>
+
+    <!-- <ion-item slot="end" color="primary" lines="none"> 
+      <label style="display: none;"></label>
+      <ion-select [(ngModel)]="skipNo" (ionChange)="getLeads()" interface="popover" class="pipe_lines">
+        <ion-select-option value="">None</ion-select-option>
+        <ion-select-option value="100">100</ion-select-option>
+        <ion-select-option value="200">200</ion-select-option>
+        <ion-select-option value="300">300</ion-select-option>
+        <ion-select-option value="400">400</ion-select-option>
+        <ion-select-option value="500">500</ion-select-option>
+      </ion-select>
+    </ion-item> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>  
+    <ion-list >
+      <ion-item *ngFor="let lead of leadLists;let i = index;"  (click)="ShowLead(lead)"> 
+        <ion-col>{{i+1 +". "+lead.FIRST_NAME +" "+ lead.LAST_NAME}} </ion-col>
+        <ion-col> <span style="float:right; color:Red" class="ion-text-right">{{lead.VISIBLE_TO}}</span> </ion-col>
+      </ion-item>
+    </ion-list> 
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="leadPage()" >
+      <ion-fab-button>
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab> 
+</ion-content>
+
+<ion-footer>
+  <!-- <ion-button class="footer_btn btn_opacity" type="submit" expand="full" color="primary">Lead</ion-button>       
+  <ion-button class="footer_btn" type="submit" expand="full" color="primary" (click)="opportunity()">Opportunity</ion-button>  -->
+  <ion-toolbar>
+    <app-footer></app-footer>
+  </ion-toolbar>
+</ion-footer>

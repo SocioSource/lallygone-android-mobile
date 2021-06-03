@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <!-- <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      </ion-buttons> -->
+    <ion-title>Home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <div>
+    <app-footer></app-footer>
+  </div> -->
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+   
+  <ion-card *ngIf="shows">
+    <ion-card-content>
+      <ion-list class="no-col">
+        <ion-item lines="none" class="no-col">
+            <span slot="start">
+              <ion-icon name="business" style="font-size:22px"></ion-icon>
+            </span>
+            <ion-label>
+              <h2><span>Total</span> <ion-badge color="danger" class="count_class">{{getTotal}}</ion-badge> </h2>
+             </ion-label>
+          </ion-item>
+      </ion-list>
+    </ion-card-content> 
+  </ion-card>
+  
+<ion-card *ngIf="shows">
+    <ion-card-content>
+      <ion-list class="no-col">
+        <ion-item lines="none" class="no-col">
+            <span slot="start">
+              <ion-icon name="business" style="font-size:22px"></ion-icon>
+            </span>
+            <ion-label>
+              <h2><span>Won</span> <ion-badge color="danger" class="count_class">{{wonTotal}}</ion-badge> </h2>
+             </ion-label>
+          </ion-item>
+      </ion-list>
+    </ion-card-content> 
+  </ion-card>
+
+  <div *ngFor="let opp of opportunityLists;let i = index;">
+  <ion-card *ngIf="opp.count > 0">
+    <ion-card-content  (click)="leadPage(opp.stage_id)">
+      <ion-list class="no-col">
+        <ion-item lines="none" class="no-col">
+            <span slot="start">
+              <ion-icon name="business" style="font-size:22px"></ion-icon>
+            </span>
+            <ion-label>
+              <h2><span>{{opp.stage_name}}</span> <ion-badge color="danger" class="count_class">{{opp.count}}</ion-badge> </h2>
+             </ion-label>
+          </ion-item>
+      </ion-list>
+    </ion-card-content> 
+  </ion-card>   
+</div>
+</ion-content>  
+<ion-footer>
+  <ion-toolbar>
+    <app-footer></app-footer>
+  </ion-toolbar>
+</ion-footer>

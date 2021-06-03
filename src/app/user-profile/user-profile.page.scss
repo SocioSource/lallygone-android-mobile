@@ -1,0 +1,23 @@
+.back_btn{
+    font-size: 20pt;
+    position: absolute;
+    left: 18px;
+}
+
+.hide_show{
+    display: none;
+}
+
+ion-col{
+    border-bottom: 1.6px solid #d1cfcf;
+}
+
+.margin-unset{
+    margin-left: unset;
+    margin-right: unset;
+    margin-bottom: unset;
+}
+
+ion-content {
+    --ion-background-color: #fff;
+}

@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Sign</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item class="signature-pad"  [ngClass]="editImage ? 'hideClass' : '' ">
+    <ion-row class="align-center">
+      <ion-label  class="sign_label">Signature</ion-label>
+      <canvas class="signature-pad-canvas" #canvas width="360" height="220" style="touch-action: none;"></canvas>
+      <ion-button color="light" expand="full" (click)="undo()" size="4"> Undo</ion-button>
+      <ion-button color="light" expand="full" (click)="clear()" size="4"> Clear</ion-button>
+    </ion-row>
+  </ion-item>
+
+  <ion-item class="signature-pad" [ngClass]="!editImage ? 'hideClass' : '' ">
+    <ion-row class="align-center">
+      <ion-label class="sign_label">Signature</ion-label>
+      <img [src]="signature" width="360" height="220">
+      <ion-button expand="full" color="secondary" class="button_pos" (click)="editImagefun()"> Edit</ion-button>
+    </ion-row>
+  </ion-item>
+ 
+  <ion-item lines="none" class="ion-float-right">
+  <ion-button expand="block" (click)="pdfGen()" color="secondary">send quote</ion-button>
+</ion-item>
+</ion-content>
+
+<ion-footer>
+  <ion-button class="footer_btn" type="submit" expand="full" color="secondary"  (click)="updateSign()">Submit</ion-button>
+  <!-- <ion-button class="footer_btn" expand="full" color="secondary" (click)="skip()">Skip</ion-button> -->
+</ion-footer>

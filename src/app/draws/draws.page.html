@@ -1,0 +1,107 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>draws</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form #form="ngForm" method="post" class="form_item">
+    <ion-item class="lb-img"> 
+       <ion-label position="floating">Floor Joist Span Left</ion-label>
+      <ion-input  type="number" name="floor_joist_span_left" (ionChange)="inputsChange()" [(ngModel)]="forms.floor_joist_span_left" ></ion-input>
+    </ion-item>
+
+    <ion-item class="lb-img">
+      <ion-label position="floating">Floor Joint Span Right</ion-label>
+      <ion-input  type="number" name="floor_joist_span_right" (ionChange)="inputsChange()" [(ngModel)]="forms.floor_joist_span_right" ></ion-input>
+    </ion-item>
+  
+    <ion-item class="lb-img">
+      <ion-label position="floating">Clear Beam Span</ion-label>
+      <ion-input  type="text" name="clear_beam_span" [(ngModel)]="forms.clear_beam_span" ></ion-input>
+    </ion-item>
+
+    <ion-item lines="none" class="lb-img">
+      <ion-label class="">Beam height</ion-label>
+    </ion-item> 
+
+      <ion-row class="ion-align-items-center lb-img">
+        <ion-col col-4  size="2" class="ion-align-self-start margin_set" (click)="selectBeam($event.target.innerHTML,1)"> 
+          <ion-badge [ngClass]="(badgeOne == 'F') ? 'badgeColor' : ''">F</ion-badge>
+          <ion-badge [ngClass]="(badgeOne == 'C') ? 'badgeColor' : ''">C</ion-badge>
+          <ion-badge [ngClass]="(badgeOne == 'W') ? 'badgeColor' : ''">W</ion-badge>
+          <ion-badge [ngClass]="(badgeOne == 'O') ? 'badgeColor' : ''">O</ion-badge>
+        </ion-col>
+        <ion-col col-4 class="ion-align-self-center ion-text-center">  </ion-col>
+        <ion-col col-4 size="2" class="ion-align-self-end margin_set"  (click)="selectBeam($event.target.innerHTML,2)">
+          <ion-badge [ngClass]="(badgeTwo == 'F') ? 'badgeColor' : ''">F</ion-badge>
+          <ion-badge [ngClass]="(badgeTwo == 'C') ? 'badgeColor' : ''">C</ion-badge>
+          <ion-badge [ngClass]="(badgeTwo == 'W') ? 'badgeColor' : ''">W</ion-badge>
+          <ion-badge [ngClass]="(badgeTwo == 'O') ? 'badgeColor' : ''">O</ion-badge>
+        </ion-col>        
+      </ion-row> 
+
+      <!-- <ion-row>
+        <ion-col class="ion-align-self-start">
+          ion-col [start]
+        </ion-col>
+        <ion-col class="ion-align-self-center">
+          ion-col [center]
+        </ion-col>
+        <ion-col class="ion-align-self-end">
+          ion-col [end]
+        </ion-col>
+      </ion-row> -->
+     
+      <!-- <ion-select name="beam_height_type" [(ngModel)]="forms.beam_height_type">
+        <ion-select-option value="F-F">F-F</ion-select-option>
+        <ion-select-option value="F-C">F-C</ion-select-option>
+        <ion-select-option value="F-W">F-W</ion-select-option>
+        <ion-select-option value="F-O">F-O</ion-select-option>
+
+        <ion-select-option value="C-F">C-F</ion-select-option>
+        <ion-select-option value="C-C">C-C</ion-select-option>
+        <ion-select-option value="C-W">C-W</ion-select-option>
+        <ion-select-option value="C-O">C-O</ion-select-option>
+
+        <ion-select-option value="W-F">W-F</ion-select-option>
+        <ion-select-option value="W-C">W-C</ion-select-option>
+        <ion-select-option value="W-W">W-W</ion-select-option>
+        <ion-select-option value="W-O">W-O</ion-select-option>
+
+        <ion-select-option value="O-F">O-F</ion-select-option>
+        <ion-select-option value="O-C">O-C</ion-select-option>
+        <ion-select-option value="O-W">O-W</ion-select-option>
+        <ion-select-option value="O-O">O-O</ion-select-option>
+      </ion-select> --> 
+
+    <ion-item class="signature-pad" [ngClass]="!editImage ? 'hideClass' : '' ">      
+   <ion-row class="align-center">
+    <ion-label>Draw Beam</ion-label>
+    <canvas class="signature-pad-canvas" #canvas width="360" height="220" style="touch-action: none;"></canvas>
+        <ion-button color="light" expand="full" (click)="undo()" size="4"> Undo</ion-button>
+        <ion-button color="light" expand="full" (click)="clear()" size="4"> Clear</ion-button> 
+        <!-- <ion-button color="light" expand="full" (click)="pdfGen()" size="4"> gen</ion-button>  -->
+      </ion-row>
+    </ion-item>
+
+    <ion-item  class="signature-pad" [ngClass]="editImage ? 'hideClass' : '' "> 
+      <ion-row class="align-center">
+       <ion-label>Draw Beam</ion-label>
+      <img [src]="forms.remove_beam" width="360" height="220">
+      <ion-button expand="full" color="secondary" class="button_pos" (click)="editImagefun()" > Edit</ion-button>
+    </ion-row>
+       </ion-item>
+  </form>
+
+</ion-content>
+
+<ion-footer>
+  <ion-button class="footer_btn" type="submit" expand="full" color="secondary" (click)=" update ? create(form) : updateForm(form)">Continue</ion-button>
+  <!-- <ion-button class="footer_btn" type="submit" expand="full" color="secondary" [disabled]="update" (click)="skip(form)">Skip</ion-button> -->
+</ion-footer>
+

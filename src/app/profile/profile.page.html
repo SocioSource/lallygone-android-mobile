@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar  class="ion-text-center">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title><ion-label>{{service.opportunity.OPPORTUNITY_NAME}}</ion-label></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content> 
+  <form #form="ngForm" method="post" class="form_item">
+    <ion-item class="lb-img">
+      <ion-label position="floating">First Name</ion-label>
+      <ion-input  type="text" name="first_name" [(ngModel)]="forms.first_name || forms.OPPORTUNITY_NAME"  ></ion-input>
+    </ion-item>
+
+    <ion-item class="lb-img">
+      <ion-label position="floating">Last Name</ion-label>
+      <ion-input  type="text" name="last_name" [(ngModel)]="forms.last_name" ></ion-input>
+    </ion-item>
+
+    <ion-item class="lb-img">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input  type="email" name="email" [(ngModel)]="forms.email" ></ion-input>
+    </ion-item>
+
+    <ion-item class="lb-img">
+      <ion-label position="floating">Phone</ion-label>
+      <ion-input  type="number" name="phone" [(ngModel)]="forms.phone" ></ion-input>
+    </ion-item>
+
+    <ion-item class="lb-img">
+      <ion-label position="floating">Cell</ion-label>
+      <ion-input  type="number" name="cell" [(ngModel)]="forms.cell" ></ion-input>
+    </ion-item>
+
+    <ion-item class="lb-img">
+      <ion-label position="floating">Address</ion-label>
+      <ion-input  type="text" name="address_street" [(ngModel)]="forms.address_street" ></ion-input>
+    </ion-item>
+
+    <ion-item class="lb-img">
+      <ion-label position="floating">City</ion-label>
+      <ion-input  type="text" name="address_city" [(ngModel)]="forms.address_city" ></ion-input>
+    </ion-item>
+
+    <ion-item class="lb-img">
+      <ion-label position="floating">State</ion-label>
+      <ion-input  type="text" name="address_state" [(ngModel)]="forms.address_state" ></ion-input>
+    </ion-item>
+    
+    <ion-item class="lb-img">
+      <ion-label position="floating">Zip</ion-label>
+      <ion-input  type="text" name="address_postcode" [(ngModel)]="forms.address_postcode" ></ion-input>
+    </ion-item>
+
+    <ion-item class="lb-img">
+      <ion-textarea name="scope_of_work" [(ngModel)]="forms.scope_of_work" placeholder="Scope of work"></ion-textarea>
+    </ion-item>
+
+   
+
+  </form>
+
+  <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="pillerPage()" [ngClass]="!showList ? 'hideShow' : ''">
+    <ion-fab-button>
+      <ion-icon name="clipboard"></ion-icon>
+    </ion-fab-button>
+  </ion-fab> -->
+
+</ion-content>
+
+<ion-footer>
+  <ion-button class="footer_btn" type="submit" expand="full" color="secondary" (click)=" update ? create(form) : updateForm(form)">Continue</ion-button>
+  <!-- <ion-button class="footer_btn" type="submit" expand="full" color="primary" [disabled]="update" (click)="skip(form)">Skip</ion-button> -->
+</ion-footer>
